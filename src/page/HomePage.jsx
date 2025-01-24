@@ -20,7 +20,6 @@ export class HomePage extends Component {
 
   onArchiveHandler = (id) => {
     const note = getNote(id);
-    // Toggle archive state
     note.archived ? unarchiveNote(id) : archiveNote(id);
 
     this.setState(() => {
