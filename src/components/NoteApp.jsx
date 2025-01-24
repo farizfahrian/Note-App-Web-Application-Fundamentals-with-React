@@ -12,6 +12,8 @@ import AddPage from "../page/AddPage";
 import HomePage from "../page/HomePage";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./NotFound";
+import DetailPage from "../page/DetailPage";
+import { SearchPage } from "../page/SearchPage";
 
 class NoteApp extends React.Component {
   constructor(props) {
@@ -21,25 +23,7 @@ class NoteApp extends React.Component {
       searchQuery: "",
     };
 
-    this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
-    this.onArchiveHandler = this.onArchiveHandler.bind(this);
-    this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onSearchHandler = this.onSearchHandler.bind(this);
-  }
-
-  onAddNoteHandler({ noteData }) {
-    addNote(noteData);
-    this.setState({ notes: getAllNotes() });
-  }
-
-  onArchiveHandler(id) {
-    archiveNote(id);
-    this.setState({ notes: getAllNotes() });
-  }
-
-  onDeleteHandler(id) {
-    deleteNote(id);
-    this.setState({ notes: getAllNotes() });
   }
 
   onSearchHandler(searchQuery) {
@@ -47,15 +31,15 @@ class NoteApp extends React.Component {
   }
 
   render() {
-    // const filteredSearchNotes = this.state.notes.filter((note) =>
-    //   note.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())
-    // );
     return (
       <div>
+        <NoteHeader onSearch={this.onSearchHandler} />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/add" element={<AddPage />} />
+            <Route path="/note/:id" element={<DetailPage />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

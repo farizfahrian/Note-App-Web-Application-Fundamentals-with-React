@@ -15,6 +15,14 @@ h2 {
   font-size: 32px;
 }
 
+p {
+  color: rgb(207, 207, 207);
+}
+
+a {
+  text-decoration: none;
+}
+
 input,
 textarea {
   padding: 12px 18px;
@@ -45,10 +53,12 @@ textarea::placeholder {
 .note-app__header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 12px 32px;
   border-bottom: 1px solid #e5e5e5;
   gap: 12px;
+  color: #e5e5e5;
+  text-align: none;
 }
 
 .note-app__header h1 {
@@ -56,6 +66,7 @@ textarea::placeholder {
   margin: 8px 0;
   flex: 1;
   color: white;
+  text-decoration: none;
 }
 
 .note-app__body {
@@ -132,6 +143,27 @@ textarea::placeholder {
   transition: background 0.3s ease-out, color 0.3s ease-out;
 }
 
+.note-search-input {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 12px;
+  background-color: #1b1b1b;
+  font-family: "Inter", sans-serif;
+  border: 2px solid #373737;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.note-search-input :focus {
+  background: #373737;
+  border-color: #363636;
+  box-shadow: 0 0 0 1px #363636;
+  transition: background 0.3s ease-out, border-color 0.3s ease-out,
+    box-shadow 0.3s ease-out;
+}
+
 .notes-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -172,6 +204,14 @@ textarea::placeholder {
   flex-direction: column;
   justify-content: space-between;
   padding: 24px;
+  text-decoration: none;
+  color: #e5e5e5;
+  transition: all 0.2s ease-in-out;
+}
+
+.note-item:hover {
+  background: #303030;
+  scale: 0.99;
 }
 
 .note-item__title {
@@ -193,6 +233,12 @@ textarea::placeholder {
 
 .note-item__body {
   font-size: 14px;
+  color: #e9e9e9;
+}
+
+.note-item__body a {
+  color: #e9e9e9;
+  text-decoration: underline;
 }
 
 .note-item__action {
@@ -255,7 +301,7 @@ textarea::placeholder {
 
 @media only screen and (max-width: 2000px) {
   .notes-list__container {
-    margin: 60px 80px;
+    margin: 24px 80px;
   }
 }
 

@@ -1,18 +1,15 @@
 import React from "react";
-import NoteSearchInput from "./NoteSearchInput";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-function NoteHeader({ onSearch }) {
+function NoteHeader() {
   return (
-    <header className="note-app__header">
-      <h1>Notes App</h1>
-      <NoteSearchInput onSearch={onSearch} />
-    </header>
+    <nav className="note-app__header">
+      <Link to="/">
+        <h1>Notes App</h1>
+      </Link>
+      <Link to="/add">Tambah</Link>
+    </nav>
   );
 }
-
-NoteHeader.propTypes = {
-  onSearch: PropTypes.func.isRequired,
-};
 
 export default NoteHeader;

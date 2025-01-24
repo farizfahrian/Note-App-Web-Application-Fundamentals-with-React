@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-import { archiveNote, deleteNote, getAllNotes } from "../utils/local-data";
+import {
+  getNote,
+  archiveNote,
+  unarchiveNote,
+  deleteNote,
+  getAllNotes,
+} from "../utils/local-data";
 import NoteList from "../components/NoteList";
+import NoteSearchInput from "../components/NoteSearchInput";
 
 export class HomePage extends Component {
   constructor(props) {
@@ -10,6 +17,18 @@ export class HomePage extends Component {
       notes: getAllNotes(),
     };
   }
+
+  onArchiveHandler = (id) => {
+    const note = getNote(id);
+    // Toggle archive state
+    note.archived ? unarchiveNote(id) : archiveNote(id);
+
+    this.setState(() => {
+      return {
+        notes: getAllNotes(),
+      };
+    });
+  };
 
   onArchive = (id) => {
     archiveNote(id);
@@ -34,9 +53,10 @@ export class HomePage extends Component {
   render() {
     return (
       <section>
+        <NoteSearchInput />
         <NoteList
           notes={this.state.notes}
-          onArchive={this.onArchive}
+          onArchive={this.onArchiveHandler}
           onDelete={this.onDeleteHandler}
         />
       </section>

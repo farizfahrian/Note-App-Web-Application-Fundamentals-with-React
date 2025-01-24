@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-function ArchiveButton({ id, onArchive }) {
+function ArchiveButton({ id, onArchive, note }) {
   return (
     <button className="note-item__archive-button" onClick={() => onArchive(id)}>
-      Arsip
+      {note.archived ? "Batal Arsip" : "Arsip"}
     </button>
   );
 }

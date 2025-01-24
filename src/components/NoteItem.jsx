@@ -7,17 +7,19 @@ import {
   showFormattedDate,
 } from "../utils";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import HTMLReactParser from "html-react-parser/lib/index";
 
-function NoteItem({ title, createdAt, body, id, onArchive, onDelete }) {
+function NoteItem({ title, createdAt, body, id, onArchive, onDelete, note }) {
   return (
     <div className="note-item">
-      <div>
+      <Link to={`/note/${id}`}>
         <p className="note-item__title">{capitalizeFirstLetter(title)}</p>
-        <p className="note-item__date">{showFormattedDate(createdAt)}</p>
-        <div className="note-item__body">{extractContent(body)}</div>
-      </div>
+      </Link>
+      <p className="note-item__date">{showFormattedDate(createdAt)}</p>
+      <div className="note-item__body">{HTMLReactParser(body)}</div>
       <div className="note-item__action">
-        <ArchiveButton id={id} onArchive={onArchive} />
+        <ArchiveButton id={id} onArchive={onArchive} note={note} />
         <DeleteButton id={id} onDelete={onDelete} />
       </div>
     </div>

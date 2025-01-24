@@ -7,6 +7,7 @@ function NoteSearchInput({ onSearch }) {
       type="search"
       onChange={(event) => onSearch(event.target.value)}
       placeholder="Cari judul catatan"
+      className="note-search-input"
     />
   );
 }

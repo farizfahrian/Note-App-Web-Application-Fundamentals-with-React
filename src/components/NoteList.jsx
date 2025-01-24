@@ -18,6 +18,7 @@ function NoteList({ notes, onArchive, onDelete }) {
                 id={note.id}
                 onArchive={onArchive}
                 onDelete={onDelete}
+                note={note}
                 {...note}
               />
             ))}
@@ -36,6 +37,7 @@ function NoteList({ notes, onArchive, onDelete }) {
                 id={note.id}
                 onArchive={onArchive}
                 onDelete={onDelete}
+                note={note}
                 {...note}
               />
             ))}
