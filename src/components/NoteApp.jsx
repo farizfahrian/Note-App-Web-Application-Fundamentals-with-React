@@ -1,71 +1,74 @@
 import React from "react";
-import { getInitialData } from "../utils";
 import NoteHeader from "./NoteHeader";
 import NoteInput from "./NoteInput";
 import NoteList from "./NoteList";
+import {
+  addNote,
+  archiveNote,
+  deleteNote,
+  getAllNotes,
+} from "../utils/local-data";
+import AddPage from "../page/AddPage";
+import HomePage from "../page/HomePage";
+import { Route, Routes } from "react-router-dom";
+import NotFound from "./NotFound";
 
 class NoteApp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            notes: getInitialData(),
-            searchQuery: '',
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      notes: getAllNotes(),
+      searchQuery: "",
+    };
 
-        this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
-        this.onArchiveHandler = this.onArchiveHandler.bind(this);
-        this.onDeleteHandler = this.onDeleteHandler.bind(this);
-        this.onSearchHandler = this.onSearchHandler.bind(this);
-    }
+    this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+    this.onArchiveHandler = this.onArchiveHandler.bind(this);
+    this.onDeleteHandler = this.onDeleteHandler.bind(this);
+    this.onSearchHandler = this.onSearchHandler.bind(this);
+  }
 
-    onAddNoteHandler({ title, body }) {
-        this.setState((prevState) => {
-            return {
-                notes: [
-                    ...prevState.notes,
-                    {
-                        id: +new Date,
-                        title,
-                        body,
-                        createdAt: +new Date,
-                        archived: false,
-                    }
-                ]
-            }
-        })
-    }
+  onAddNoteHandler({ noteData }) {
+    addNote(noteData);
+    this.setState({ notes: getAllNotes() });
+  }
 
-    onArchiveHandler(id) {
-        this.setState((prevState) => {
-            const notes = prevState.notes.map((note) => note.id === id ? { ...note, archived: !note.archived } : note)
-            return { notes };
-        })
-    }
+  onArchiveHandler(id) {
+    archiveNote(id);
+    this.setState({ notes: getAllNotes() });
+  }
 
-    onDeleteHandler(id) {
-        const notes = this.state.notes.filter(note => note.id !== id);
-        this.setState({ notes });
-    }
+  onDeleteHandler(id) {
+    deleteNote(id);
+    this.setState({ notes: getAllNotes() });
+  }
 
-    onSearchHandler(searchQuery) {
-        this.setState({ searchQuery });
-    }
+  onSearchHandler(searchQuery) {
+    this.setState({ searchQuery });
+  }
 
-    render() {
-        const filteredSearchNotes = this.state.notes.filter(note =>
-            note.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())
-        );
-        return (
-            <div>
-                <NoteHeader onSearch={this.onSearchHandler} />
-                <NoteInput addNote={this.onAddNoteHandler} />
-                <NoteList
-                    notes={filteredSearchNotes}
-                    onArchive={this.onArchiveHandler}
-                    onDelete={this.onDeleteHandler} />
-            </div>
-        )
-    }
+  render() {
+    // const filteredSearchNotes = this.state.notes.filter((note) =>
+    //   note.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())
+    // );
+    return (
+      <div>
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/add" element={<AddPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        {/* <NoteHeader onSearch={this.onSearchHandler} />
+        <NoteInput addNote={this.onAddNoteHandler} />
+        <NoteList
+          notes={filteredSearchNotes}
+          onArchive={this.onArchiveHandler}
+          onDelete={this.onDeleteHandler}
+        /> */}
+      </div>
+    );
+  }
 }
 
 export default NoteApp;

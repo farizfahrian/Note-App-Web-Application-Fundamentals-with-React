@@ -1,9 +1,9 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import NoteApp from './components/NoteApp';
-
+import React from "react";
+import { createRoot } from "react-dom/client";
 // import style
-import './styles/style.css';
+import "./styles/style.css";
+import NoteApp from "./components/NoteApp";
+import App from "./App";
 
-const root = createRoot(document.getElementById('root'));
-root.render(<NoteApp />);
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);

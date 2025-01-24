@@ -64,6 +64,21 @@ textarea::placeholder {
   padding: 12px;
 }
 
+.note-app__not-found-body {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.note-app__not-found-body p {
+  color: rgb(224, 223, 223);
+  margin-top: 4px;
+}
+
 .note-input {
   margin: 32px auto;
   padding: 40px;
@@ -187,6 +202,7 @@ textarea::placeholder {
 }
 
 .note-item__delete-button,
+.note-item__not-found-button,
 .note-item__archive-button {
   display: block;
   width: 100%;
@@ -210,6 +226,20 @@ textarea::placeholder {
 }
 
 .note-item__archive-button:hover {
+  color: #363636;
+  background: #b8b8b8;
+}
+
+.note-item__not-found-button {
+  color: #262626;
+  background: #e5e5e5;
+  width: max-content;
+  padding: 12px 16px;
+  margin-top: 12px;
+  text-decoration: none;
+}
+
+.note-item__not-found-button:hover {
   color: #363636;
   background: #b8b8b8;
 }
