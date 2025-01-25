@@ -6,7 +6,6 @@ import NotFound from "./NotFound";
 import DetailPage from "../page/DetailPage";
 import { Route, Routes } from "react-router-dom";
 import { getAllNotes } from "../utils/local-data";
-import { SearchPage } from "../page/SearchPage";
 
 class NoteApp extends React.Component {
   constructor(props) {
@@ -32,17 +31,9 @@ class NoteApp extends React.Component {
             <Route path="/" element={<HomePage />} />
             <Route path="/add" element={<AddPage />} />
             <Route path="/note/:id" element={<DetailPage />} />
-            <Route path="/search" element={<SearchPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        {/* <NoteHeader onSearch={this.onSearchHandler} />
-        <NoteInput addNote={this.onAddNoteHandler} />
-        <NoteList
-          notes={filteredSearchNotes}
-          onArchive={this.onArchiveHandler}
-          onDelete={this.onDeleteHandler}
-        /> */}
       </div>
     );
   }

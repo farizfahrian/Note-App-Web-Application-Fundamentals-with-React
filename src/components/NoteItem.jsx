@@ -36,6 +36,7 @@ NoteItem.propTypes = {
   id: PropTypes.string.isRequired,
   onArchive: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  note: PropTypes.object.isRequired,
 };
 
 export default NoteItem;
