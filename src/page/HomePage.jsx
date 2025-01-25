@@ -9,17 +9,13 @@ import {
 import NoteList from "../components/NoteList";
 import NoteSearchInput from "../components/NoteSearchInput";
 import { useSearchParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function HomePageWrapper() {
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get("title") || "";
 
   const handleSearch = (keyword) => {
-    // if (keyword) {
-    //   searchParams.set("title", keyword);
-    // } else {
-    //   searchParams.delete("title");
-    // }
     setSearchParams({ title: keyword });
   };
 
@@ -77,5 +73,10 @@ export class HomePage extends Component {
     );
   }
 }
+
+HomePage.propTypes = {
+  searchKeyword: PropTypes.string,
+  onSearch: PropTypes.func.isRequired,
+};
 
 export default HomePageWrapper;
