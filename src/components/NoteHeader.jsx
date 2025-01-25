@@ -7,7 +7,7 @@ function NoteHeader() {
       <Link to="/">
         <h1>Notes App</h1>
       </Link>
-      <Link to="/add">Tambah</Link>
+      <Link to="/add">Tambah Catatan</Link>
     </nav>
   );
 }

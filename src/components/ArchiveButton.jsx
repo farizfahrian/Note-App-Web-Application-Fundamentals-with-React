@@ -12,6 +12,7 @@ function ArchiveButton({ id, onArchive, note }) {
 ArchiveButton.propTypes = {
   id: PropTypes.string.isRequired,
   onArchive: PropTypes.func.isRequired,
+  note: PropTypes.object.isRequired,
 };
 
 export default ArchiveButton;

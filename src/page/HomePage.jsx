@@ -8,6 +8,23 @@ import {
 } from "../utils/local-data";
 import NoteList from "../components/NoteList";
 import NoteSearchInput from "../components/NoteSearchInput";
+import { useSearchParams } from "react-router-dom";
+
+function HomePageWrapper() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const title = searchParams.get("title") || "";
+
+  const handleSearch = (keyword) => {
+    // if (keyword) {
+    //   searchParams.set("title", keyword);
+    // } else {
+    //   searchParams.delete("title");
+    // }
+    setSearchParams({ title: keyword });
+  };
+
+  return <HomePage searchKeyword={title} onSearch={handleSearch} />;
+}
 
 export class HomePage extends Component {
   constructor(props) {
@@ -29,16 +46,6 @@ export class HomePage extends Component {
     });
   };
 
-  onArchive = (id) => {
-    archiveNote(id);
-
-    this.setState(() => {
-      return {
-        notes: getAllNotes(),
-      };
-    });
-  };
-
   onDeleteHandler = (id) => {
     deleteNote(id);
 
@@ -50,11 +57,19 @@ export class HomePage extends Component {
   };
 
   render() {
+    const { searchKeyword } = this.props;
+    const filteredNotes = this.state.notes.filter((note) =>
+      note.title.toLowerCase().includes(searchKeyword.toLowerCase())
+    );
+
     return (
       <section>
-        <NoteSearchInput />
+        <NoteSearchInput
+          onSearch={this.props.onSearch}
+          defaultKeyword={searchKeyword}
+        />
         <NoteList
-          notes={this.state.notes}
+          notes={filteredNotes}
           onArchive={this.onArchiveHandler}
           onDelete={this.onDeleteHandler}
         />
@@ -63,4 +78,4 @@ export class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default HomePageWrapper;

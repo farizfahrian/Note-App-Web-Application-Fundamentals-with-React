@@ -1,18 +1,11 @@
 import React from "react";
 import NoteHeader from "./NoteHeader";
-import NoteInput from "./NoteInput";
-import NoteList from "./NoteList";
-import {
-  addNote,
-  archiveNote,
-  deleteNote,
-  getAllNotes,
-} from "../utils/local-data";
 import AddPage from "../page/AddPage";
 import HomePage from "../page/HomePage";
-import { Route, Routes } from "react-router-dom";
 import NotFound from "./NotFound";
 import DetailPage from "../page/DetailPage";
+import { Route, Routes } from "react-router-dom";
+import { getAllNotes } from "../utils/local-data";
 import { SearchPage } from "../page/SearchPage";
 
 class NoteApp extends React.Component {
