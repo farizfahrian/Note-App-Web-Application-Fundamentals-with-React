@@ -76,6 +76,21 @@ textarea::placeholder {
   padding: 12px;
 }
 
+.note-app__floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .note-app__not-found-body {
   max-width: 1000px;
   margin: auto;
@@ -249,6 +264,7 @@ textarea::placeholder {
   height: max-content;
   line-height: 110%;
   margin: 64px auto;
+  padding: 0 32px;
   font-size: 20px;
   font-weight: 500;
   color: #e5e5e5;

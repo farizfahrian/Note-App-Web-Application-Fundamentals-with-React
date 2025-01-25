@@ -1,11 +1,5 @@
 import React from "react";
-import ArchiveButton from "./ArchiveButton";
-import DeleteButton from "./DeleteButton";
-import {
-  capitalizeFirstLetter,
-  extractContent,
-  showFormattedDate,
-} from "../utils";
+import { capitalizeFirstLetter, showFormattedDate } from "../utils";
 import PropTypes from "prop-types";
 import HTMLReactParser from "html-react-parser/lib/index";
 

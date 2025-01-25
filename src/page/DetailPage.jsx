@@ -32,7 +32,7 @@ export class DetailPage extends Component {
 }
 
 DetailPage.propTypes = {
-  id: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default DetailPageWrapper;

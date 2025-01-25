@@ -4,14 +4,14 @@ import {
   archiveNote,
   unarchiveNote,
   deleteNote,
-  getActiveNotes,
+  getArchivedNotes,
 } from "../utils/local-data";
 import NoteList from "../components/NoteList";
 import NoteSearchInput from "../components/NoteSearchInput";
 import { useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function HomePageWrapper() {
+function ArchivePageWrapper() {
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get("title") || "";
 
@@ -19,15 +19,15 @@ function HomePageWrapper() {
     setSearchParams({ title: keyword });
   };
 
-  return <HomePage searchKeyword={title} onSearch={handleSearch} />;
+  return <ArchivePage searchKeyword={title} onSearch={handleSearch} />;
 }
 
-export class HomePage extends Component {
+export class ArchivePage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      notes: getActiveNotes(),
+      notes: getArchivedNotes(),
     };
   }
 
@@ -37,7 +37,7 @@ export class HomePage extends Component {
 
     this.setState(() => {
       return {
-        notes: getActiveNotes(),
+        notes: getArchivedNotes(),
       };
     });
   };
@@ -47,7 +47,7 @@ export class HomePage extends Component {
 
     this.setState(() => {
       return {
-        notes: getActiveNotes(),
+        notes: getArchivedNotes(),
       };
     });
   };
@@ -65,7 +65,7 @@ export class HomePage extends Component {
           defaultKeyword={searchKeyword}
         />
         <NoteList
-          title="Daftar Catatan"
+          title="Catatan Arsip"
           notes={filteredNotes}
           onArchive={this.onArchiveHandler}
           onDelete={this.onDeleteHandler}
@@ -75,9 +75,9 @@ export class HomePage extends Component {
   }
 }
 
-HomePage.propTypes = {
+ArchivePage.propTypes = {
   searchKeyword: PropTypes.string,
   onSearch: PropTypes.func.isRequired,
 };
 
-export default HomePageWrapper;
+export default ArchivePageWrapper;
